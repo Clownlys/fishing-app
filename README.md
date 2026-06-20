@@ -1,73 +1,53 @@
-# React + TypeScript + Vite
+# 🎣 鱼讯 — 钓鱼天气助手
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+为中国钓鱼爱好者设计的移动端 H5 应用。融合气压趋势、风向风力、温度、降水、云量等多因子分析，帮你判断"今天该不该出钓"。
 
-Currently, two official plugins are available:
+## 功能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 🎯 钓鱼指数
+基于中国传统钓鱼经验，5 因子加权评分（0-100 分）：
+- **气压趋势 (35%)** — 气压缓慢下降时鱼最活跃
+- **风力风向 (20%)** — 1-3 级微风最佳，东北风为最佳钓风
+- **温度 (15%)** — 18-28°C 最适，温差大不利
+- **降水 (15%)** — 小雨增氧好钓，大雨不宜
+- **云量光照 (15%)** — 阴天散射光鱼更敢觅食
 
-## React Compiler
+### 📍 钓点管理
+- 搜索地名添加钓点
+- GPS 自动定位
+- 淡水/海水标记
+- 多钓点切换
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 📊 天气详情
+- 实时天气（温度/气压/风力/湿度/降水）
+- 气压趋势图（近 12h ~ 未来 12h）
+- 逐时预报（12 小时）
+- 7 天钓鱼指数预报
 
-## Expanding the ESLint configuration
+### 📋 渔获日志
+- 记录每次出钓（鱼种/数量/重量/备注）
+- 自动关联当天天气条件和钓鱼指数
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 技术栈
+- **Vite + React + TypeScript** — 前端框架
+- **Tailwind CSS** — 移动优先样式
+- **Open-Meteo API** — 免费天气数据（无需 API key）
+- **localStorage** — 本地存储（MVP 无需后端）
+- **PWA** — 可添加到手机桌面
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 开发
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd /Users/clownly/Projects/fishing-app
+npm install
+npm run dev      # 开发服务器
+npm run build    # 生产构建
+npm run preview  # 预览生产构建
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 部署
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+纯静态应用，`dist/` 目录可部署到任何静态服务器：
+- Vercel / Netlify（海外，可能较慢）
+- 腾讯云 COS / 阿里云 OSS（国内推荐）
+- 微信云托管（如果需要绑定域名）
