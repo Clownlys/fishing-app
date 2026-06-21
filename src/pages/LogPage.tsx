@@ -11,7 +11,7 @@ interface Props {
   onConsumedPrefill?: () => void;
 }
 
-export default function LogPage({ refreshKey, onRefresh, prefillSpot, prefillScore, onConsumedPrefill }: Props) {
+export default function LogPage({ onRefresh, prefillSpot, prefillScore, onConsumedPrefill }: Props) {
   const [showForm, setShowForm] = useState(!!prefillSpot);
   const logs = getLogs();
 

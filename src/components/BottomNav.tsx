@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Home, ClipboardList, Settings } from 'lucide-react';
 
 interface Props {

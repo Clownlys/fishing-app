@@ -26,6 +26,19 @@ body {
   scrollbar-width: none;
 }
 
+/* Leaflet 地图 z-index 修复：防止遮挡其他 UI 元素 */
+.leaflet-container {
+  z-index: 0 !important;
+}
+.leaflet-pane,
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 1 !important;
+}
+.leaflet-control {
+  z-index: 2 !important;
+}
+
 /* 平滑过渡 */
 .page-transition {
   animation: fadeIn 0.2s ease;

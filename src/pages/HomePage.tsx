@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { MapPin, Plus, Loader2, Trash2 } from 'lucide-react';
 import type { Spot, WeatherData, FishingScore } from '../types';
 import { getSpots, deleteSpot } from '../lib/storage';
-import { fetchWeather, wmoToIcon, wmoToText, windDirText, windToBeaufort } from '../lib/weather';
+import { fetchWeather, wmoToIcon, wmoToText, windToBeaufort } from '../lib/weather';
 import { calculateFishingScore } from '../lib/fishing';
 
 interface Props {
